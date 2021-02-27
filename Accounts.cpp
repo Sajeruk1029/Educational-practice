@@ -116,8 +116,13 @@ settings(conf)
 	butaddaccount->setMaximumSize(200, 50);
 	butrefreshlist->setMaximumSize(200, 50);
 
-	table->setHorizontalHeaderLabels({"Номер аккаунта", "Логин", "Пароль", "Тип"});
+	table->setHorizontalHeaderLabels({"Номер", "Логин", "Пароль", "Тип"});
 	table->setEditTriggers(0);
+
+	table->setColumnWidth(0, 50);
+	table->setColumnWidth(1, 200);
+	table->setColumnWidth(2, 200);
+	table->setColumnWidth(3, 210);
 
 	table->setSelectionBehavior(QAbstractItemView::SelectRows);
 	table->setSelectionMode(QAbstractItemView::SingleSelection);
@@ -249,8 +254,6 @@ void Accounts::clickButChangePassword()
 	query->bindValue(":Login", linelogin->text());
 	query->bindValue(":Password", linepassword->text());
 
-	query->exec();
-
 	if(query->lastError().type() != QSqlError::NoError)
 	{
 		qDebug() << "Не удалось обновить данные в таблице пользователей!\n";
@@ -344,8 +347,13 @@ void Accounts::clickButRefreshList()
 
 	table->clear();
 
-	table->setHorizontalHeaderLabels({"Номер аккаунта", "Логин", "Пароль", "Тип"});
+	table->setHorizontalHeaderLabels({"Номер", "Логин", "Пароль", "Тип"});
 	table->setRowCount(0);
+
+	table->setColumnWidth(0, 50);
+	table->setColumnWidth(1, 200);
+	table->setColumnWidth(2, 200);
+	table->setColumnWidth(3, 210);
 
 	table->setSelectionBehavior(QAbstractItemView::SelectRows);
 	table->setSelectionMode(QAbstractItemView::SingleSelection);

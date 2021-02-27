@@ -16,9 +16,12 @@
 #include <QtSql/QSqlQuery>
 #include <QtSql/QSqlError>
 
+#include <QString>
+
 #include <QSettings>
 
 #include <QFile>
+#include <QFileInfo>
 
 #include <QDebug>
 
@@ -37,7 +40,7 @@ class AuthPanel : public QWidget
 	Q_OBJECT
 
 	public:
-		explicit AuthPanel();
+		explicit AuthPanel(QString);
 		~AuthPanel();
 
 	private slots:

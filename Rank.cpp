@@ -156,8 +156,12 @@ file(nullptr)
 		return;
 	}
 
-	table->setHorizontalHeaderLabels({"Номер звания", "Наименование", "Компетенции"});
+	table->setHorizontalHeaderLabels({"Номер", "Наименование", "Компетенции"});
 	table->setEditTriggers(0);
+
+	table->setColumnWidth(0, 50);
+	table->setColumnWidth(1, 200);
+	table->setColumnWidth(2, 410);
 
 	layout->addWidget(linename);
 	layout->addWidget(linecompetenc);
@@ -307,8 +311,12 @@ void Rank::clickButRefreshList()
 
 	table->clear();
 
-	table->setHorizontalHeaderLabels({"Номер звания", "Наименование", "Компетенции"});
+	table->setHorizontalHeaderLabels({"Номер", "Наименование", "Компетенции"});
 	table->setRowCount(0);
+
+	table->setColumnWidth(0, 50);
+	table->setColumnWidth(1, 200);
+	table->setColumnWidth(2, 410);
 
 	table->setSelectionBehavior(QAbstractItemView::SelectRows);
 	table->setSelectionMode(QAbstractItemView::SingleSelection);
@@ -367,7 +375,7 @@ void Rank::clickButPrintToFile()
 		return;
 	}
 
-	file->write(QString("Номер звания\tНаименование\tКомпетенции\n").toUtf8());
+	file->write(QString("Номер\tНаименование\tКомпетенции\n").toUtf8());
 
 	query->exec(QString("select * from `Rank`"));
 

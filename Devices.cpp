@@ -190,8 +190,15 @@ settings(conf), file(nullptr)
 		return;
 	}
 
-	table->setHorizontalHeaderLabels({"Номер оборудования", "Наименование", "Назначение", "Наличие", "Количество", "Ответственная рота"});
+	table->setHorizontalHeaderLabels({"Номер", "Наименование", "Назначение", "Наличие", "Количество", "Ответственная рота"});
 	table->setEditTriggers(0);
+
+	table->setColumnWidth(0, 50);
+	table->setColumnWidth(1, 100);
+	table->setColumnWidth(2, 150);
+	table->setColumnWidth(3, 100);
+	table->setColumnWidth(4, 100);
+	table->setColumnWidth(5, 160);
 
 	query->exec(QString("select Id from Company"));
 
@@ -465,8 +472,15 @@ void Devices::clickButRefreshList()
 		comboboxcompany->addItem(query->value(0).toString());
 	}
 
-	table->setHorizontalHeaderLabels({"Номер оборудования", "Наименование", "Назначение", "Наличие", "Количество", "Ответственная рота"});
+	table->setHorizontalHeaderLabels({"Номер", "Наименование", "Назначение", "Наличие", "Количество", "Ответственная рота"});
 	table->setRowCount(0);
+
+	table->setColumnWidth(0, 50);
+	table->setColumnWidth(1, 100);
+	table->setColumnWidth(2, 150);
+	table->setColumnWidth(3, 100);
+	table->setColumnWidth(4, 100);
+	table->setColumnWidth(5, 160);
 
 	table->setSelectionBehavior(QAbstractItemView::SelectRows);
 	table->setSelectionMode(QAbstractItemView::SingleSelection);
@@ -532,7 +546,7 @@ void Devices::clickButPrintToFile()
 		return;
 	}
 
-	file->write(QString("Номер оборудования\tНаименование\tНазначение\tНаличие\tКоличество\tОтветственная рота\n").toUtf8());
+	file->write(QString("Номер\tНаименование\tНазначение\tНаличие\tКоличество\tОтветственная рота\n").toUtf8());
 
 	query->exec(QString("select Device.Id, Device.Name, Device.Target_of_device, Device.Have, Device.Number, Device_and_company.Id_of_company from Device join Device_and_company on Device_and_company.Id_of_device = Device.id"));
 

@@ -182,8 +182,13 @@ settings(conf), file(nullptr)
 		return;
 	}
 
-	table->setHorizontalHeaderLabels({"Номер гражданина", "ФИО гражданина", "Дата рождения", "Звание"});
+	table->setHorizontalHeaderLabels({"Номер", "ФИО гражданина", "Дата рождения", "Звание"});
 	table->setEditTriggers(0);
+
+	table->setColumnWidth(0, 50);
+	table->setColumnWidth(1, 260);
+	table->setColumnWidth(2, 110);
+	table->setColumnWidth(3, 240);
 
 	query->exec(QString("select Name from `Rank`"));
 
@@ -612,6 +617,10 @@ void Citizen::clickButRefreshList()
 	table->clear();
 	comboboxrank->clear();
 
+	table->setColumnWidth(0, 50);
+	table->setColumnWidth(1, 260);
+	table->setColumnWidth(2, 110);
+	table->setColumnWidth(3, 240);
 
 	query->exec(QString("select Name from `Rank`"));
 
@@ -620,7 +629,7 @@ void Citizen::clickButRefreshList()
 		comboboxrank->addItem(query->value(0).toString());
 	}
 
-	table->setHorizontalHeaderLabels({"Номер гражданина", "ФИО гражданина", "Дата рождения", "Звание"});
+	table->setHorizontalHeaderLabels({"Номер", "ФИО гражданина", "Дата рождения", "Звание"});
 	table->setRowCount(0);
 
 	table->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -680,7 +689,7 @@ void Citizen::clickButPrintToFile()
 		return;
 	}
 
-	file->write(QString("Номер гражданина\tФИО гражданина\tДата рождения\tЗвание\n").toUtf8());
+	file->write(QString("Номер\tФИО гражданина\tДата рождения\tЗвание\n").toUtf8());
 
 	query->exec(QString("select Citizen.Id, CONCAT(Citizen.LastName, ' ', Citizen.FirstName, ' ', Citizen.Patronymic), Citizen.Date_of_birth, `Rank`.Name from Citizen join `Rank` on `Rank`.Id = Citizen.Rank_id"));
 

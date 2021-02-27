@@ -1,13 +1,13 @@
 #include "AuthPanel.h"
 
-AuthPanel::AuthPanel() : layout(new (std::nothrow) QBoxLayout(QBoxLayout::Down)), linelogin(new (std::nothrow) QLineEdit()),
+AuthPanel::AuthPanel(QString path) : layout(new (std::nothrow) QBoxLayout(QBoxLayout::Down)), linelogin(new (std::nothrow) QLineEdit()),
 linepassword(new (std::nothrow) QLineEdit()), butlogin(new (std::nothrow) QPushButton("Войти")),
 db(new (std::nothrow) QSqlDatabase()), query(nullptr),
 settings(nullptr), adminpanel(nullptr), officerpanel(nullptr)
 {
-	if(!QFile("config.ini").exists())
+	if(!QFile(path + "config.ini").exists())
 	{
-		settings = new (std::nothrow) QSettings("config.ini", QSettings::IniFormat);
+		settings = new (std::nothrow) QSettings(path + "config.ini", QSettings::IniFormat);
 
 		if(!settings)
 		{
@@ -41,7 +41,7 @@ settings(nullptr), adminpanel(nullptr), officerpanel(nullptr)
 	}
 	else
 	{
-		settings = new (std::nothrow) QSettings("config.ini", QSettings::IniFormat);
+		settings = new (std::nothrow) QSettings(path + "config.ini", QSettings::IniFormat);
 
   	if(!layout)
   	{

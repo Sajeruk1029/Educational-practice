@@ -165,8 +165,13 @@ settings(conf), file(nullptr)
 		return;
 	}
 
-	table->setHorizontalHeaderLabels({"Номер роты", "Количество человек", "Часть", "Командир роты"});
+	table->setHorizontalHeaderLabels({"Номер", "Количество человек", "Часть", "Командир роты"});
 	table->setEditTriggers(0);
+
+	table->setColumnWidth(0, 50);
+	table->setColumnWidth(1, 150);
+	table->setColumnWidth(2, 150);
+	table->setColumnWidth(3, 310);
 
 	query->exec(QString("select Citizen.LastName, Citizen.FirstName, Citizen.Patronymic from Citizen join Commander_of_company on Commander_of_company.Id_of_citizen = Citizen.Id"));
 
@@ -360,6 +365,11 @@ void Companies::clickButRefreshList()
 
 	table->clear();
 
+	table->setColumnWidth(0, 50);
+	table->setColumnWidth(1, 150);
+	table->setColumnWidth(2, 150);
+	table->setColumnWidth(3, 310);
+
 	comboboxcommander->clear();
 	comboboxunit->clear();
 
@@ -377,7 +387,7 @@ void Companies::clickButRefreshList()
 		comboboxunit->addItem(query->value(0).toString());
 	}
 
-	table->setHorizontalHeaderLabels({"Номер роты", "Количество человек", "Часть", "Командир роты"});
+	table->setHorizontalHeaderLabels({"Номер", "Количество человек", "Часть", "Командир роты"});
 	table->setRowCount(0);
 
 	table->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -438,7 +448,7 @@ void Companies::clickButPrintToFile()
 		return;
 	}
 
-	file->write(QString("Номер роты\tколичество человек\tЧасть\tКомандир роты\n").toUtf8());
+	file->write(QString("Номер\tколичество человек\tЧасть\tКомандир роты\n").toUtf8());
 
 	query->exec(QString("select Company.Id, Company.Person_number, Unit.Unit_location, CONCAT(Citizen.LastName, ' ', Citizen.FirstName, ' ', Citizen.Patronymic) from Company join Commander_of_company on Commander_of_company.Id = Company.Id_commander_of_company join Citizen on Citizen.Id = Commander_of_company.Id_of_citizen join Unit on Unit.Id = Company.Id_of_unit"));
 

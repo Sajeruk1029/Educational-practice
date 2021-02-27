@@ -155,8 +155,12 @@ file(nullptr)
 		return;
 	}
 
-	table->setHorizontalHeaderLabels({"Номер части", "Местоположение", "Командир части"});
+	table->setHorizontalHeaderLabels({"Номер", "Местоположение", "Командир части"});
 	table->setEditTriggers(0);
+
+	table->setColumnWidth(0, 50);
+	table->setColumnWidth(1, 295);
+	table->setColumnWidth(2, 315);
 
 	query->exec(QString("select Citizen.LastName, Citizen.FirstName, Citizen.Patronymic from Citizen join Commander_of_unit on Commander_of_unit.Id_citizen = Citizen.Id"));
 
@@ -326,8 +330,12 @@ void Units::clickButRefreshList()
 		comboboxcommander->addItem((query->value(0).toString() + " " + query->value(1).toString() + " " + query->value(2).toString()));
 	}
 
-	table->setHorizontalHeaderLabels({"Номер части", "Местоположение", "Командир части"});
+	table->setHorizontalHeaderLabels({"Номер", "Местоположение", "Командир части"});
 	table->setRowCount(0);
+
+	table->setColumnWidth(0, 50);
+	table->setColumnWidth(1, 295);
+	table->setColumnWidth(2, 315);
 
 	table->setSelectionBehavior(QAbstractItemView::SelectRows);
 	table->setSelectionMode(QAbstractItemView::SingleSelection);
@@ -386,7 +394,7 @@ void Units::clickButPrintToFile()
 		return;
 	}
 
-	file->write(QString("Номер части\tMeстоположение\tКомандир части\n").toUtf8());
+	file->write(QString("Номер\tMeстоположение\tКомандир части\n").toUtf8());
 
 	query->exec(QString("select Unit.Id, Unit.Unit_location, CONCAT(Citizen.LastName, ' ', Citizen.FirstName, ' ', Citizen.Patronymic) from Unit join Commander_of_unit on Commander_of_unit.Id = Unit.Id_commander_of_unit join Citizen on Citizen.Id = Commander_of_unit.Id_citizen"));
 

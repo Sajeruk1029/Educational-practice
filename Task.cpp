@@ -166,8 +166,13 @@ settings(conf), file(nullptr)
 		return;
 	}
 
-	table->setHorizontalHeaderLabels({"Номер задачи", "Наименование", "Описание", "Ответственный"});
+	table->setHorizontalHeaderLabels({"Номер", "Наименование", "Описание", "Ответственный"});
 	table->setEditTriggers(0);
+
+	table->setColumnWidth(0, 50);
+	table->setColumnWidth(1, 100);
+	table->setColumnWidth(2, 275);
+	table->setColumnWidth(3, 235);
 
 	query->exec(QString("select CONCAT(Citizen.LastName, ' ', Citizen.FirstName, ' ', Citizen.Patronymic) from Citizen"));
 
@@ -348,6 +353,11 @@ void Task::clickButRefreshList()
 	table->clear();
 	comboboxcitizen->clear();
 
+	table->setColumnWidth(0, 50);
+	table->setColumnWidth(1, 100);
+	table->setColumnWidth(2, 275);
+	table->setColumnWidth(3, 235);
+
 	query->exec(QString("select CONCAT(Citizen.LastName, ' ', Citizen.FirstName, ' ', Citizen.Patronymic) from Citizen"));
 
 	while(query->next())
@@ -355,7 +365,7 @@ void Task::clickButRefreshList()
 		comboboxcitizen->addItem(query->value(0).toString());
 	}
 
-	table->setHorizontalHeaderLabels({"Номер задачи", "Наименование", "Описание", "Ответственный"});
+	table->setHorizontalHeaderLabels({"Номер", "Наименование", "Описание", "Ответственный"});
 	table->setRowCount(0);
 
 	table->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -415,7 +425,7 @@ void Task::clickButPrintToFile()
 		return;
 	}
 
-	file->write(QString("Номер задачи\tНаименование\tОписание\tОтветственый\n").toUtf8());
+	file->write(QString("Номер\tНаименование\tОписание\tОтветственый\n").toUtf8());
 
 	query->exec(QString("select Task.Id, Task.Name, Task.Description, CONCAT(Citizen.LastName, ' ', Citizen.FirstName, ' ', Citizen.Patronymic) from Task join Citizen on Citizen.Id = Task.Id_of_citizen"));
 

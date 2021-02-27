@@ -97,6 +97,7 @@ devices(nullptr), task(nullptr)
 	tab->addTab(devices, "Оборудование");
 	tab->addTab(task, "Задачи");
 
+	setWindowTitle("Панель офицера");
 	setLayout(layout);
 	setFixedSize(700, 700);
 

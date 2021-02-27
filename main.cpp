@@ -2,6 +2,8 @@
 
 #include <QSettings>
 
+#include <QString>
+
 #include <QFile>
 
 #include <QDebug>
@@ -18,7 +20,14 @@ int main(int argc, char *argv[])
 {
 	QApplication app(argc, argv);
 
-	AuthPanel *authpanel = new (std::nothrow) AuthPanel();
+	QString path = "";
+
+	if(argc == 2)
+	{
+		path = argv[1];
+	}
+
+	AuthPanel *authpanel = new (std::nothrow) AuthPanel(path);
 
 	if(!authpanel)
 	{

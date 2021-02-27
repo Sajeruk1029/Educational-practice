@@ -453,6 +453,10 @@ moc_AuthPanel.cpp: AuthPanel.h \
 		OfficerPanel.h \
 		Units.h \
 		Companies.h \
+		Rank.h \
+		Citizen.h \
+		Devices.h \
+		Task.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/sajeruk/C++/Qt/Educational-practice/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/sajeruk/C++/Qt/Educational-practice -I/home/sajeruk/C++/Qt/Educational-practice -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/10 -I/usr/include/x86_64-linux-gnu/c++/10 -I/usr/include/c++/10/backward -I/usr/lib/gcc/x86_64-linux-gnu/10/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include AuthPanel.h -o moc_AuthPanel.cpp
@@ -522,10 +526,14 @@ AuthPanel.o: AuthPanel.cpp AuthPanel.h \
 		Accounts.h \
 		OfficerPanel.h \
 		Units.h \
-		Companies.h
+		Companies.h \
+		Rank.h \
+		Citizen.h \
+		Devices.h \
+		Task.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o AuthPanel.o AuthPanel.cpp
 
-Citizen.o: Citizen.cpp Units.h
+Citizen.o: Citizen.cpp Citizen.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Citizen.o Citizen.cpp
 
 Companies.o: Companies.cpp Companies.h
@@ -534,7 +542,7 @@ Companies.o: Companies.cpp Companies.h
 Connection.o: Connection.cpp Connection.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Connection.o Connection.cpp
 
-Devices.o: Devices.cpp Units.h
+Devices.o: Devices.cpp Devices.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Devices.o Devices.cpp
 
 main.o: main.cpp AuthPanel.h \
@@ -543,18 +551,26 @@ main.o: main.cpp AuthPanel.h \
 		Accounts.h \
 		OfficerPanel.h \
 		Units.h \
-		Companies.h
+		Companies.h \
+		Rank.h \
+		Citizen.h \
+		Devices.h \
+		Task.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
 OfficerPanel.o: OfficerPanel.cpp OfficerPanel.h \
 		Units.h \
-		Companies.h
+		Companies.h \
+		Rank.h \
+		Citizen.h \
+		Devices.h \
+		Task.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o OfficerPanel.o OfficerPanel.cpp
 
-Rank.o: Rank.cpp Units.h
+Rank.o: Rank.cpp Rank.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Rank.o Rank.cpp
 
-Task.o: Task.cpp Units.h
+Task.o: Task.cpp Task.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Task.o Task.cpp
 
 Units.o: Units.cpp Units.h
@@ -589,9 +605,13 @@ moc_Units.o: moc_Units.cpp
 
 ####### Install
 
-install:  FORCE
+install:  
+	install ./Educational-practice /usr/local/bin/;
+	touch /usr/share/applications/Educational-practice.desktop;
+	echo "[Desktop Entry]\nVersion=1.0\nName=Educational-practice\nComment=Educational-practice app\nType=Application\nExec=Educational-practice .Educational-practice/\nIcon=\nCategories=Utility\n" > /usr/share/applications/Educational-practice.desktop
 
-uninstall:  FORCE
+uninstall:  
+	rm -rf /usr/local/bin/Educational-practice /usr/share/applications/Educational-practice.desktop .Educational-practice
 
 FORCE:
 
