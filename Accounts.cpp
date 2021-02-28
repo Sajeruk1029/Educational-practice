@@ -254,6 +254,8 @@ void Accounts::clickButChangePassword()
 	query->bindValue(":Login", linelogin->text());
 	query->bindValue(":Password", linepassword->text());
 
+	query->exec();
+
 	if(query->lastError().type() != QSqlError::NoError)
 	{
 		qDebug() << "Не удалось обновить данные в таблице пользователей!\n";

@@ -237,7 +237,7 @@ void Rank::clickButAddRank()
 		qDebug() << "Не удалось добавить данные в таблице частей!\n";
 		qDebug() << "Error code: " << query->lastError().nativeErrorCode() << " Error: " << query->lastError().text();
 
-		QMessageBox::warning(this, "Ошибка", "Часть не была добавлена!");
+		QMessageBox::warning(this, "Ошибка", "Звание не было добавлено!");
 	}
 }
 
@@ -301,7 +301,7 @@ void Rank::clickButDeleteRank()
 		qDebug() << "Не удалось удалить данные в таблице званий!\n";
 		qDebug() << "Error code: " << query->lastError().nativeErrorCode() << " Error: " << query->lastError().text();
 
-		QMessageBox::warning(this, "Ошибка", "Звание не была удалена!");
+		QMessageBox::warning(this, "Ошибка", "Звание не было удалено!");
 	}
 }
 

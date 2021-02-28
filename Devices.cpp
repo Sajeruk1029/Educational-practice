@@ -321,7 +321,7 @@ void Devices::clickButAddDevices()
 		qDebug() << "Не удалось добавить данные в таблице оборудования!\n";
 		qDebug() << "Error code: " << query->lastError().nativeErrorCode() << " Error: " << query->lastError().text();
 
-		QMessageBox::warning(this, "Ошибка", "Оборудование не была добавлена!");
+		QMessageBox::warning(this, "Ошибка", "Оборудование не было добавлено!");
 	}
 
 	query->prepare(QString("insert into Device_and_company values(null, (select Id from Device where Name = :Name and Target_of_device = :Target), :IdCompany)"));
@@ -401,7 +401,7 @@ void Devices::clickButChangeDevices()
 		qDebug() << "Не удалось обновить данные в таблице оборудования!\n";
 		qDebug() << "Error code: " << query->lastError().nativeErrorCode() << " Error: " << query->lastError().text();
 
-		QMessageBox::warning(this, "Ошибка", "Оборудование не была обновлено!");
+		QMessageBox::warning(this, "Ошибка", "Оборудование не было обновлено!");
 	}
 
 	query->prepare(QString("update Device_and_company set Id_of_device = :IdDevice, Id_of_company = :IdCompany where Id_of_device = :IdDevice"));

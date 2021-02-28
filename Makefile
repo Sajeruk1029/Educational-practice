@@ -609,9 +609,12 @@ install:
 	install ./Educational-practice /usr/local/bin/;
 	touch /usr/share/applications/Educational-practice.desktop;
 	echo "[Desktop Entry]\nVersion=1.0\nName=Educational-practice\nComment=Educational-practice app\nType=Application\nExec=Educational-practice .Educational-practice/\nIcon=\nCategories=Utility\n" > /usr/share/applications/Educational-practice.desktop
+	mysql -u root -e "create database education_practice;"
+	mysql -u root education_practice < MySQL/dump.sql
 
 uninstall:  
 	rm -rf /usr/local/bin/Educational-practice /usr/share/applications/Educational-practice.desktop .Educational-practice
+	mysql -u root -e "drop database education_practice;"
 
 FORCE:
 

@@ -262,7 +262,7 @@ void Citizen::clickButAddCitizen()
 
 	if(linelastname->text() == "")
 	{
-		QMessageBox::warning(this, "Ошибка", "Фамилия не должно быть пустым!");
+		QMessageBox::warning(this, "Ошибка", "Фамилия не должна быть пустой!");
 
 		return;
 	}
@@ -359,7 +359,7 @@ void Citizen::clickButChangeCitizen()
 
 	if(linelastname->text() == "")
 	{
-		QMessageBox::warning(this, "Ошибка", "Фамилия не должно быть пустым!");
+		QMessageBox::warning(this, "Ошибка", "Фамилия не должна быть пустой!");
 
 		return;
 	}
@@ -404,7 +404,7 @@ void Citizen::clickButChangeCitizen()
 		qDebug() << "Не удалось обновить данные в таблице частей!\n";
 		qDebug() << "Error code: " << query->lastError().nativeErrorCode() << " Error: " << query->lastError().text();
 
-		QMessageBox::warning(this, "Ошибка", "Часть не была обновлена!");
+		QMessageBox::warning(this, "Ошибка", "Гражданин не был обновлен!");
 	}
 
 	if((commander_of_unit) || (commander_of_company))
@@ -438,7 +438,7 @@ void Citizen::clickButChangeCitizen()
 				qDebug() << "Не удалось удалить данные в таблице чатей!\n";
 				qDebug() << "Error code: " << query->lastError().nativeErrorCode() << " Error: " << query->lastError().text();
 
-				QMessageBox::warning(this, "Ошибка", "Часть не была удалена!");
+				QMessageBox::warning(this, "Ошибка", "Командир части не был удален!");
 			}
 		}
 		if((commander_of_company) && (comboboxrank->currentText() == "Командир части"))
@@ -574,7 +574,7 @@ void Citizen::clickButDeleteCitizen()
 			qDebug() << "Не удалось удалить данные в таблице рот!\n";
 			qDebug() << "Error code: " << query->lastError().nativeErrorCode() << " Error: " << query->lastError().text();
 
-			QMessageBox::warning(this, "Ошибка", "Рота не была удалена!");
+			QMessageBox::warning(this, "Ошибка", "Командир Рот не был удален!");
 		}
 	}
 
@@ -591,7 +591,7 @@ void Citizen::clickButDeleteCitizen()
 			qDebug() << "Не удалось удалить данные в таблице чатей!\n";
 			qDebug() << "Error code: " << query->lastError().nativeErrorCode() << " Error: " << query->lastError().text();
 
-			QMessageBox::warning(this, "Ошибка", "Часть не была удалена!");
+			QMessageBox::warning(this, "Ошибка", "Командир части не был удален!");
 		}
 	}
 
@@ -606,7 +606,7 @@ void Citizen::clickButDeleteCitizen()
 		qDebug() << "Не удалось удалить данные в таблице граждан!\n";
 		qDebug() << "Error code: " << query->lastError().nativeErrorCode() << " Error: " << query->lastError().text();
 
-		QMessageBox::warning(this, "Ошибка", "Гражданин не была удалена!");
+		QMessageBox::warning(this, "Ошибка", "Гражданин не был удален!");
 	}
 }
 
